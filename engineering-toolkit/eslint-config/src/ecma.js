@@ -9,7 +9,7 @@ import globals from "globals";
  * Generates an ESLint Flat Config for ECMAScript projects.
  *
  * @param {{ files?: string, isStrict?: boolean }} config - The base configuration object with optional files and isStrict fields.
- * @param {...import('eslint').Linter.Config[]} overrides - Additional configuration overrides.
+ * @param {...import('eslint').Linter.Config} overrides - Additional configuration overrides.
  * @returns {import('eslint').Linter.Config} The concatenated ESLint configuration.
  */
 export function ecma(config, ...overrides) {
@@ -42,7 +42,7 @@ export function ecma(config, ...overrides) {
             },
             name: "import",
             rules: {
-              "import/no-anonymous-default-export": "warn",
+              "import/no-anonymous-default-export": "off",
             },
             settings: {
               "import/extensions": [".ts", ".tsx", ".mts", ".cts", ".mtsx", ".ctsx", ".js", ".jsx", ".mjs", ".cjs"],

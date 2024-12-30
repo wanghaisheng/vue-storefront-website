@@ -8,7 +8,7 @@ import importPlugin from "eslint-plugin-import";
  * Generates an ESLint Flat Config for TypeScript projects.
  *
  * @param {{ files?: string, isStrict?: boolean }} config - The base configuration object with optional files and isStrict fields.
- * @param {...import('eslint').Linter.Config[]} overrides - Additional configuration overrides.
+ * @param {...import('eslint').Linter.Config} overrides - Additional configuration overrides.
  * @returns {import('eslint').Linter.Config} The concatenated ESLint configuration.
  */
 export function typescript(config, ...overrides) {
@@ -26,7 +26,7 @@ export function typescript(config, ...overrides) {
             },
             name: "import",
             rules: {
-              "import/no-anonymous-default-export": "warn",
+              "import/no-anonymous-default-export": "off",
             },
             settings: {
               "import/resolver": {
@@ -61,6 +61,7 @@ export function typescript(config, ...overrides) {
         "@typescript-eslint/explicit-module-boundary-types": "warn",
         "@typescript-eslint/naming-convention": "off",
         "@typescript-eslint/no-empty-interface": "off",
+        "@typescript-eslint/no-empty-object-type": "warn",
         "@typescript-eslint/no-explicit-any": "warn",
         "@typescript-eslint/no-inferrable-types": "warn",
         "@typescript-eslint/no-magic-numbers": "warn",
@@ -76,11 +77,17 @@ export function typescript(config, ...overrides) {
             varsIgnorePattern: "^_",
           },
         ],
-        "@typescript-eslint/no-use-before-define": "warn",
+        "@typescript-eslint/no-use-before-define": [
+          "warn",
+          {
+            functions: false,
+          },
+        ],
         "@typescript-eslint/prefer-function-type": "warn",
         "default-param-last": "off",
         "no-magic-numbers": "off",
         "no-use-before-define": "off",
+        "no-unused-vars": "off",
         "prefer-promise-reject-errors": "off",
       },
     }),
